@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestor de Horas Sprint</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="hero">
+      <div>
+        <h1>Gestor de Horas Sprint</h1>
+        <p>
+          Ajusta horas por día, días trabajados y capacidad semanal. La distribución se recalcula al instante,
+          muestra carga total por persona, agrupación por proyecto y te avisa si se supera la capacidad máxima.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">Capacidad semanal</div>
+        <div class="controls">
+          <div class="field">
+            <label for="capacidad">Horas máximas del sprint</label>
+            <input type="number" id="capacidad" min="0" step="1" value="100" />
+            <span class="print-only" id="capacidadPrint"></span>
+          </div>
+          <div class="field">
+            <label for="diasBase">Días base informativos</label>
+            <input type="number" id="diasBase" min="1" step="1" value="7" />
+            <span class="print-only" id="diasBasePrint"></span>
+          </div>
+        </div>
+        <div id="estado" class="status ok"></div>
+      </div>
+
+      <div class="card">
+        <div class="label">Horas usadas</div>
+        <div class="big" id="usado">0 h 00 min</div>
+        <div class="sub" id="usadoDetalle">0 min en total</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Horas libres</div>
+        <div class="big" id="disponible">0 h 00 min</div>
+        <div class="sub">Se calcula contra la capacidad semanal.</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="hint">Usa el selector de hora para mayor precisión. Cada valor se multiplica por los días trabajados.
+      </div>
+      <div class="actions">
+        <button class="secondary" type="button" id="exportarMarkdownBtn">Exportar Markdown</button>
+        <button class="secondary" type="button" id="exportarPdfBtn">Exportar PDF</button>
+        <button class="secondary" type="button" id="agregarFilaBtn">Agregar fila</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Persona</th>
+            <th>Horas por día</th>
+            <th>Días</th>
+            <th>Total semanal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tablaBody"></tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">Carga por proyecto</h2>
+    <div class="table-wrap mini-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Total semanal</th>
+            <th>Personas</th>
+          </tr>
+        </thead>
+        <tbody id="proyectosResumen"></tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">Carga por persona</h2>
+    <div class="summary-grid">
+      <div class="table-wrap mini-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Persona</th>
+              <th>Total semanal</th>
+              <th>Promedio diario</th>
+            </tr>
+          </thead>
+          <tbody id="personasResumen"></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="label">Notas</div>
+        <div class="sub" style="margin-top:0; line-height:1.7;">
+          <div>• Las horas se muestran en formato <strong>horas y minutos</strong>, no en decimales.</div>
+          <div>• Puedes asignar diferentes días por persona.</div>
+          <div>• Marcos y Julio pueden tener 6 días, mientras otros 7.</div>
+          <div>• Si cambias la capacidad, el estado se actualiza automáticamente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="script.js"></script>
+
+</html>

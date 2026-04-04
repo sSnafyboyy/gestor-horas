@@ -138,7 +138,6 @@ button {
 }
 
 input[type="number"],
-input[type="time"],
 input[type="text"] {
   background: var(--panel-2);
   color: var(--text);
@@ -147,6 +146,54 @@ input[type="text"] {
   padding: 11px 12px;
   outline: none;
   transition: border-color .2s ease;
+}
+
+.duration-control {
+  min-width: 164px;
+}
+
+.duration-display {
+  width: 100%;
+  justify-content: flex-start;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 11px 12px;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.duration-display:hover {
+  transform: none;
+  border-color: #4b4b4b;
+}
+
+.duration-control.is-editing .duration-display {
+  display: none;
+}
+
+.duration-editor {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.duration-control.is-editing .duration-editor {
+  display: flex;
+}
+
+.duration-part {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.duration-editor input[type="number"] {
+  width: 72px;
+  padding: 10px 12px;
 }
 
 input:focus {
@@ -322,7 +369,8 @@ tbody tr.group-row {
     display: none !important;
   }
 
-  input[type="time"] {
+  .duration-display,
+  .duration-editor {
     display: none !important;
   }
 
